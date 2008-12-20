@@ -9,7 +9,7 @@ use XML::Simple;
 use Time::HiRes;
 use base qw(Class::Accessor::Fast);
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 =head1 NAME
@@ -451,11 +451,11 @@ sub new {
     my $this = bless {}, $class;
 
     if (@_ == 1) {
-        my ($ws_track) = @_; # should be a WebService::MusicBrainz::Result::Track object
+        my ($ws_track) = @_; # should be a WebService::MusicBrainz::Response::Track object
 
         $this->artist($ws_track->artist->name);
         $this->title($ws_track->title);
-        $this->track(($ws_track->release_list->offset || 0) + 1);
+        $this->track(($ws_track->release_list->releases->[0]->track_list->offset || 0) + 1);
         $this->album($ws_track->release_list->releases->[0]->title);
         $this->wsres($ws_track);
     } else {
