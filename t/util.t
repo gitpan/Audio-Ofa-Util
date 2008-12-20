@@ -33,3 +33,9 @@ SKIP: {
 
     ok (scalar(grep $_->title() eq 'Good Vibrations', @ret), "Right title (Looking for Good Vibrations in @{[map $_->title, @ret]})");
 }
+
+# Just check that these don't die:
+# MusicBrainz does not have this PUID (as of today)
+Audio::Ofa::Util->new(puids => ['27716ccf-7e2c-7860-8ac7-d0e2e6bbd075'])->musicbrainz_lookup();
+# They'll probably never have this one:
+Audio::Ofa::Util->new(puids => ['ffffffff-ffff-ffff-ffff-ffffffffffff'])->musicbrainz_lookup();

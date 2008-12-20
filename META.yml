@@ -1,6 +1,6 @@
 ---
 name: Audio-Ofa-Util
-version: 0.02
+version: 0.03
 author:
   - 'Christoph Bussenius <pepe@cpan.org>'
 abstract: Audio metadata lookup by fingerprint
@@ -21,7 +21,7 @@ build_requires:
 provides:
   Audio::Ofa::Util:
     file: lib/Audio/Ofa/Util.pm
-    version: 0.02
+    version: 0.03
 generated_by: Module::Build version 0.2808
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html

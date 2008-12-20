@@ -9,7 +9,7 @@ use XML::Simple;
 use Time::HiRes;
 use base qw(Class::Accessor::Fast);
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 
 =head1 NAME
@@ -180,10 +180,6 @@ using L<Audio::Extract::PCM>, which currently uses the extarnal "sox" program
 and supports encodings such as MP3, Ogg/Vorbis and many others.
 
 You must set C<filename> before calling this method.
-
-The return values are:
-    fingerprint => $fingerprint,
-    duration => $duration
 
 The fingerprint is calculated by L<Audio::Ofa / ofa_create_print>, and the
 C<fingerprint> field of the object will be set.
@@ -414,7 +410,7 @@ sub musicbrainz_lookup {
 
         my $resp = eval { $ws->search({ PUID => $puid }) };
 
-        unless ($resp) {
+        unless ($resp && $resp->track_list) {
             if ($@) {
                 # search throws exception e.g. for "503 Service Temporarily
                 # Unavailable" errors
@@ -528,7 +524,7 @@ top of this module.
 
 Christoph Bussenius (pepe at cpan.org)
 
-Please mention the module's name in the subject of your mails so that it will
+Please mention the module's name in the subject of your mails so that they will
 not be lost in the spam.
 
 If you find this module useful I'll be glad if you drop me a note.

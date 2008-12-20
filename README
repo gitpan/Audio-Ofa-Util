@@ -107,9 +107,6 @@ METHODS
 
     You must set "filename" before calling this method.
 
-    The return values are: fingerprint => $fingerprint, duration =>
-    $duration
-
     The fingerprint is calculated by "ofa_create_print" in Audio::Ofa, and
     the "fingerprint" field of the object will be set. Additionally, the
     "duration" (in milliseconds) and the "extension" will be set to the
@@ -211,8 +208,8 @@ LICENSE
 AUTHOR
     Christoph Bussenius (pepe at cpan.org)
 
-    Please mention the module's name in the subject of your mails so that it
-    will not be lost in the spam.
+    Please mention the module's name in the subject of your mails so that
+    they will not be lost in the spam.
 
     If you find this module useful I'll be glad if you drop me a note.
 

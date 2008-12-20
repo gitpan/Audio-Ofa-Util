@@ -5,3 +5,7 @@ Revision history for Audio-Ofa-Util
 
 0.02    2008-12-10
         Fixed bug that made all track numbers be 1
+
+0.03    2008-12-10
+        Fix exception when MusicBrainz does not have a track.
+        Fix documentation.
