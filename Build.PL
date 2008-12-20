@@ -15,7 +15,7 @@ my $builder = Module::Build->new(
     },
     requires => {
         'Audio::Ofa' => 0,
-        'Audio::Extract::PCM' => 0,
+        'Audio::Extract::PCM' => '0.02',
         'Class::Accessor' => 0,
         'XML::Simple' => 0,
         'WebService::MusicBrainz' => 0,

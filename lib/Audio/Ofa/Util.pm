@@ -9,7 +9,7 @@ use XML::Simple;
 use Time::HiRes;
 use base qw(Class::Accessor::Fast);
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 
 =head1 NAME
@@ -21,7 +21,7 @@ Audio::Ofa::Util - Retrieve audio fingerprints and metadata for unknown audio fi
 This module tries to make retrieving audio fingerprints and metadata for
 unknown audio files as easy as possible.  It interfaces with the modules
 L<Audio::Ofa> and L<WebService::MusicBrainz>, provides a simple L<LWP> based
-interface to the MusicDNS library, and can make use of the "sox" program to
+interface to the MusicDNS library, and can make use of L<Audio::Extract::PCM> to
 read some popular music formats.
 
 The most comprehensive way to use this is to start with a (possibly untagged)
@@ -208,7 +208,7 @@ sub analyze_file {
         return ();
     }
 
-    my $duration = int (1000 * length($pcm) / (2*2) / FREQ); # 2 channels, 2 bytes per sample
+    my $duration = int (1000 * length($$pcm) / (2*2) / FREQ); # 2 channels, 2 bytes per sample
 
     # Fingerprinting only uses the first 135 seconds; we throw away the rest.
     # Certainly it would be more efficient to instruct sox not to generate more
@@ -217,13 +217,13 @@ sub analyze_file {
     # formats as sox supports, I will probably use this unefficient solution.
     # It's just a matter of Pink Floyd vs. Ramones.
     my $s135 = (2*2)*FREQ*135;
-    substr($pcm, $s135, length($pcm)-$s135, '') if $s135 < length($pcm);
+    substr($$pcm, $s135, length($$pcm)-$s135, '') if $s135 < length($$pcm);
 
     # This is usually the same, but "use bytes" has no effect here.
     # substr($pcm, $s135) = '' if length($pcm) > $s135;
 
-    my $fp = ofa_create_print($pcm, OFA_LITTLE_ENDIAN, length($pcm)/2, FREQ, 1);
-    undef $pcm;
+    my $fp = ofa_create_print($$pcm, OFA_LITTLE_ENDIAN, length($$pcm)/2, FREQ, 1);
+    undef $$pcm;
     unless ($fp) {
         $this->error("Fingerprint could not be calculated");
         return ();

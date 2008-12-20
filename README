@@ -6,8 +6,8 @@ SYNOPSIS
     This module tries to make retrieving audio fingerprints and metadata for
     unknown audio files as easy as possible. It interfaces with the modules
     Audio::Ofa and WebService::MusicBrainz, provides a simple LWP based
-    interface to the MusicDNS library, and can make use of the "sox" program
-    to read some popular music formats.
+    interface to the MusicDNS library, and can make use of
+    Audio::Extract::PCM to read some popular music formats.
 
     The most comprehensive way to use this is to start with a (possibly
     untagged) file name and get full metadata:

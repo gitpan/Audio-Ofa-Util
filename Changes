@@ -9,3 +9,7 @@ Revision history for Audio-Ofa-Util
 0.03    2008-12-10
         Fix exception when MusicBrainz does not have a track.
         Fix documentation.
+
+0.04    2008-12-10
+        New version of Audio::Extract::PCM returns pcm data by reference, adopt
+        to that.
